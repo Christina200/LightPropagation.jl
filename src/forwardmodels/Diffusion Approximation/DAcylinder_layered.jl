@@ -297,7 +297,7 @@ end
 # green is the Green's function for either the first or bottom layer (below).
 #-------------------------------------------------------------------------------
 function _kernel_fluence_DA_Nlay_cylinder(ρ::AbstractFloat, D, μa, a, zb, z, z0, l, n_med, besselroots, green, N)
-    ϕ = zero(eltype(μa))
+    # ϕ = zero(eltype(μa))
     ϕ_tmp = zero(eltype(μa))
     apzb = inv(a + zb[1])
 
@@ -308,10 +308,11 @@ function _kernel_fluence_DA_Nlay_cylinder(ρ::AbstractFloat, D, μa, a, zb, z, z
         ϕ += ϕ_tmp
     end
 
+    print("oo")
     return ϕ / (π * (a + zb[1])^2)
 end
 function _kernel_fluence_DA_Nlay_cylinder(ρ::Tuple, D, μa, a, zb, z, z0, l, n_med, besselroots, green, N)
-    ϕ = ρ .* zero(eltype(μa))
+    # ϕ = ρ .* zero(eltype(μa))
     ϕ_tmp = zero(eltype(μa))
     apzb = inv(a + zb[1])
 
@@ -322,6 +323,7 @@ function _kernel_fluence_DA_Nlay_cylinder(ρ::Tuple, D, μa, a, zb, z, z0, l, n_
         ϕ = @. ϕ + ϕ_tmp * besselj0(tmp * ρ)
     end
 
+    print("haha")
     return ϕ ./ (π * (a + zb[1])^2)
 end
 #-------------------------------------------------------------------------------
