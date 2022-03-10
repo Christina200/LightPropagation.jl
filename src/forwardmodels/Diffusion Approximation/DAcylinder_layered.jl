@@ -297,32 +297,34 @@ end
 # green is the Green's function for either the first or bottom layer (below).
 #-------------------------------------------------------------------------------
 function _kernel_fluence_DA_Nlay_cylinder(ρ::AbstractFloat, D, μa, a, zb, z, z0, l, n_med, besselroots, green, N)
-    ϕ = zero(eltype(μa))
-    ϕ_tmp = zero(eltype(μa))
-    apzb = inv(a + zb[1])
+    # ϕ = zero(eltype(μa))
+    # ϕ_tmp = zero(eltype(μa))
+    # apzb = inv(a + zb[1])
 
-    @inbounds for ind in eachindex(besselroots)
-        ϕ_tmp = green(besselroots[ind] * apzb, μa, D, z, z0, zb, l, n_med, N)
-        ϕ_tmp *= besselj0(besselroots[ind] * apzb * ρ)
-        ϕ_tmp /= J1_J0ROOTS_2[ind] # replaces (besselj1(besselroots[ind]))^2
-        ϕ += ϕ_tmp
-    end
+    # @inbounds for ind in eachindex(besselroots)
+    #     ϕ_tmp = green(besselroots[ind] * apzb, μa, D, z, z0, zb, l, n_med, N)
+    #     ϕ_tmp *= besselj0(besselroots[ind] * apzb * ρ)
+    #     ϕ_tmp /= J1_J0ROOTS_2[ind] # replaces (besselj1(besselroots[ind]))^2
+    #     ϕ += ϕ_tmp
+    # end
 
-    return ϕ / (π * (a + zb[1])^2)
+    # return ϕ / (π * (a + zb[1])^2)
+    print("haha")
 end
 function _kernel_fluence_DA_Nlay_cylinder(ρ::Tuple, D, μa, a, zb, z, z0, l, n_med, besselroots, green, N)
-    ϕ = ρ .* zero(eltype(μa))
-    ϕ_tmp = zero(eltype(μa))
-    apzb = inv(a + zb[1])
+    # ϕ = ρ .* zero(eltype(μa))
+    # ϕ_tmp = zero(eltype(μa))
+    # apzb = inv(a + zb[1])
 
-    for ind in eachindex(besselroots)
-        tmp = besselroots[ind] * apzb
-        ϕ_tmp = green(tmp, μa, D, z, z0, zb, l, n_med, N)
-        ϕ_tmp /= J1_J0ROOTS_2[ind] # replaces (besselj1(besselroots[ind]))^2
-        ϕ = @. ϕ + ϕ_tmp * besselj0(tmp * ρ)
-    end
+    # for ind in eachindex(besselroots)
+    #     tmp = besselroots[ind] * apzb
+    #     ϕ_tmp = green(tmp, μa, D, z, z0, zb, l, n_med, N)
+    #     ϕ_tmp /= J1_J0ROOTS_2[ind] # replaces (besselj1(besselroots[ind]))^2
+    #     ϕ = @. ϕ + ϕ_tmp * besselj0(tmp * ρ)
+    # end
 
-    return ϕ ./ (π * (a + zb[1])^2)
+    # return ϕ ./ (π * (a + zb[1])^2)
+    print("haha")
 end
 #-------------------------------------------------------------------------------
 # Calculates the Green's function in the first (top) and last (bottom) layer
