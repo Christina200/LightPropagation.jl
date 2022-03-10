@@ -308,7 +308,8 @@ function _kernel_fluence_DA_Nlay_cylinder(ρ::AbstractFloat, D, μa, a, zb, z, z
         ϕ += ϕ_tmp
     end
 
-    return ϕ / (π * (a + zb[1])^2)
+    # return ϕ / (π * (a + zb[1])^2)
+    return 0
 end
 function _kernel_fluence_DA_Nlay_cylinder(ρ::Tuple, D, μa, a, zb, z, z0, l, n_med, besselroots, green, N)
     ϕ = ρ .* zero(eltype(μa))
@@ -322,7 +323,8 @@ function _kernel_fluence_DA_Nlay_cylinder(ρ::Tuple, D, μa, a, zb, z, z0, l, n_
         ϕ = @. ϕ + ϕ_tmp * besselj0(tmp * ρ)
     end
 
-    return ϕ ./ (π * (a + zb[1])^2)
+    # return ϕ ./ (π * (a + zb[1])^2)
+    return 0
 end
 #-------------------------------------------------------------------------------
 # Calculates the Green's function in the first (top) and last (bottom) layer
